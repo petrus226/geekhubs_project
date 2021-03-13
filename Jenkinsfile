@@ -18,14 +18,15 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build("maceta:${env.BRANCH_NAME}-${env.BUILD_ID}")
+                    //dockerImage = docker.build("maceta:${env.BRANCH_NAME}-${env.BUILD_ID}")
+                    dockerImage = docker.build("maceta:1")
                 }
             }
         }
         stage('Push docker image') {
-            when {
-                expression { env.BRANCH_NAME == 'master' }
-            }
+            // when {
+            //     expression { env.BRANCH_NAME == 'main' }
+            // }
             steps {
                 script {
                     docker.withRegistry('http://localhost:5000') {
